@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+@section scripts {
+    <script src="~/App/Admin/App.js"></script>
+    <script src="~/App/Admin/ViewModels/RootViewModel.js"></script>
+    <script src="~/App/Admin/ViewModels/AdminHomeViewModel.js"></script>
+    <script src="~/App/Admin/ViewModels/AdminCategoryShowViewModel.js"></script>
+    <script src="~/App/Admin/ViewModels/AdminCategoryEditViewModel.js"></script>
+    <script src="~/App/Admin/ViewModels/AdminOperatorViewModel.js"></script>
+    <script src="~/App/Admin/ViewModels/AdminQueryViewModel.js"></script>
+    <script src="~/App/Admin/ViewModels/AdminGroupCategoryViewModel.js"></script>
+    <script src="~/App/Shared/ViewModels/ModalConfirm.js"></script>
+
+    <!-- Required dependencies -->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+}
+@section jsCode {
+    <!-- angular.bootstrap(document.getElementById("admin"), ['admin']); -->    
+}
+
+<div data-ng-app="admin" id="admin" data-ng-controller="rootViewModel">
+    <div class="row">
+        <div class="medium-10 columns">
+            <flash:messages></flash:messages>
+        </div>
+    </div>
+    <div data-ng-view autoscroll=""></div>
+</div>

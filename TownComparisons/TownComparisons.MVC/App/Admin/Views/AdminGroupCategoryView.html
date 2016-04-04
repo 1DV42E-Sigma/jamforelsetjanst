@@ -1,0 +1,63 @@
+﻿
+<div class="row">
+
+    <div class="medium-9 columns" id="main">
+        
+        <ul class="breadcrumbs" ng-show="categoryHasBeenLoaded">
+            <li><a href="/admin">Admin</a></li>
+            <li class="current">Grupp-kategori: {{ categoryName }}</li>
+        </ul>
+
+        <div class="container" ng-show="categoryHasBeenLoaded">
+
+            <h2>{{ pageHeading }}</h2>
+                
+            <hr />
+
+            <alert close="closeValidationAlert=true" class="danger" ng-show="!closeValidationAlert && (validationErrors.length > 0 || knownValidationErrors.length > 0)">
+                <p>Kunde inte spara grupp-kategorin, åtgärda felen och prova igen.</p>
+                <ul ng-show="validationErrors.length > 0">
+                    <li ng-repeat="error in validationErrors">{{error.name + ': ' + error.message}}</li>
+                </ul>
+                <a class="close" ng-click="close()">x</a>
+            </alert>
+
+            <form novalidate>
+
+                <label>
+                    Namn:
+                    <input type="text" ng-model="groupCategory.Name" class="{{ hasValidationError('groupCategory.Name') ? 'error' : '' }}" />
+                </label>
+                <small class="error" ng-show="hasValidationError('groupCategory.Name')">{{ getValidationErrorMessage('groupCategory.Name') }}</small>
+
+                <div>
+                    <div>
+                        <input type="button" name="save" ng-click="saveGroupCategory()" value="Spara ändringar" class="button success" />
+                    </div>
+
+                    <div ng-show="!cancel">
+                        <input type="button" name="cancel" ng-click="cancel = true" value="Avbryt" class="tiny button secondary" />
+                    </div>
+                    <div ng-show="cancel">
+                        <label>Avbryta utan att spara?</label>
+                        <input type="button" name="cancel" ng-click="cancelEditCategory()" value="Ja" class="tiny button default" />
+                        <input type="button" name="cancel" ng-click="cancel = false" value="X" class="tiny button secondary" />
+                    </div>
+                </div>
+
+                <div ng-show="updateNotInsert">
+                    <h3>Kategorier:</h3>
+                    <ul>
+                        <li ng-repeat="c in groupCategory.Categories">
+                            <a href="/admin/category/{{ c.Id }}">{{ c.Name }}</a>
+                        </li>
+                    </ul>
+
+                    <a href="/admin/groupcategory/{{ groupCategory.Id }}/newcategory" class="tiny button success">Lägg till kategori</a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

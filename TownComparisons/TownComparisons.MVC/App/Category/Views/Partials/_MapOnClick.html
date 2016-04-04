@@ -1,0 +1,23 @@
+﻿<div class="mapBoxView">
+    <!-- When clicking on a marker, this view is what's showing -->
+    <div>
+        <div ng-if="parameter.ImagePath != 'default.jpg' && parameter.ImagePath != 'dagis.jpg' && parameter.ImagePath != 'elderly.jpg' && parameter.ImagePath != 'grund.jpg' && parameter.ImagePath != 'sjukhus.jpg' && parameter.ImagePath != 'vardcentral.jpg'">
+            <img src="{{ parameter.ImagePath }}" class="mapBoxImage" />
+        </div>
+        <div ng-if="parameter.ImagePath == 'default.jpg' || parameter.ImagePath == 'dagis.jpg' || parameter.ImagePath == 'elderly.jpg' || parameter.ImagePath == 'grund.jpg' || parameter.ImagePath == 'sjukhus.jpg' || parameter.ImagePath == 'vardcentral.jpg'">
+            <img src="/Content/pictures/{{ parameter.ImagePath }}" class="mapBoxImage" />
+        </div>
+    </div>
+    <div class="mapBoxContent">
+        <h4><a href="" ng-click="$root.windowClicked(parameter.OrganisationalUnitId)">{{parameter.Name}}</a></h4>
+    </div>
+    <div class="mapBoxContent">
+        <strong>Adress: </strong>{{ parameter.Address }}<br />
+        <strong>Telefon: </strong>{{ parameter.Telephone }}
+    </div>
+    <div class="{{ parameter.class }}">
+        <a href="" ng-click="$root.toggleOperators(parameter)">
+            <i class="{{ parameter.icon }}"></i>{{ parameter.text}}
+        </a>
+    </div>
+</div>

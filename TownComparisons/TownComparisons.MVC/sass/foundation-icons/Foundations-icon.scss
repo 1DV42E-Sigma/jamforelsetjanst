@@ -1,0 +1,20 @@
+﻿@import "foundation-icons-master.scss";
+
+//Add styles below
+
+$green: green;
+$blue: blue;
+$symbolSize: large;
+
+.fi-check{
+    color: $green;
+    font-size: $symbolSize;
+    margin: 0;
+    padding: 0;
+    font-size: 23px;
+}
+
+.fi-plus{
+    font-size: $symbolSize;
+    margin-right: 4px;
+}

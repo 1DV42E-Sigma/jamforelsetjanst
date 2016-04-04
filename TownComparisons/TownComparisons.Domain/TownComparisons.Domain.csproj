@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0330CE7D-8AB1-4495-9BCF-1F249E8E72CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TownComparisons.Domain</RootNamespace>
+    <AssemblyName>TownComparisons.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IService.cs" />
+    <Compile Include="Abstract\ITownComparisonsContext.cs" />
+    <Compile Include="Abstract\ITownWebService.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
+    <Compile Include="Abstract\TownWebServiceBase.cs" />
+    <Compile Include="DAL\Repository.cs" />
+    <Compile Include="DAL\TownComparisonsContext.cs" />
+    <Compile Include="DAL\UnitOfWork.cs" />
+    <Compile Include="Entities\GroupCategory.cs" />
+    <Compile Include="Abstract\ISettings.cs" />
+    <Compile Include="Migrations\201602262311013_InitialMigration.cs" />
+    <Compile Include="Migrations\201602262311013_InitialMigration.Designer.cs">
+      <DependentUpon>201602262311013_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603011242194_CascadeDeleteAddedForCategory.cs" />
+    <Compile Include="Migrations\201603011242194_CascadeDeleteAddedForCategory.Designer.cs">
+      <DependentUpon>201603011242194_CascadeDeleteAddedForCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603011247502_SmallFixesToCategory.cs" />
+    <Compile Include="Migrations\201603011247502_SmallFixesToCategory.Designer.cs">
+      <DependentUpon>201603011247502_SmallFixesToCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603051321495_PropertyQueryInfoRenamed.cs" />
+    <Compile Include="Migrations\201603051321495_PropertyQueryInfoRenamed.Designer.cs">
+      <DependentUpon>201603051321495_PropertyQueryInfoRenamed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603071053518_ChangesToPropertyQueryInfoAndOrganisationalUnitInfo.cs" />
+    <Compile Include="Migrations\201603071053518_ChangesToPropertyQueryInfoAndOrganisationalUnitInfo.Designer.cs">
+      <DependentUpon>201603071053518_ChangesToPropertyQueryInfoAndOrganisationalUnitInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603071055199_NullablePeriodInPropertyQueryInfo.cs" />
+    <Compile Include="Migrations\201603071055199_NullablePeriodInPropertyQueryInfo.Designer.cs">
+      <DependentUpon>201603071055199_NullablePeriodInPropertyQueryInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\OrganisationalUnit.cs" />
+    <Compile Include="Entities\PropertyQueryInfo.cs" />
+    <Compile Include="Models\PropertyQueryResultForPeriod.cs" />
+    <Compile Include="Models\PropertyQueryWithResults.cs" />
+    <Compile Include="Models\PropertyQueryResultValue.cs" />
+    <Compile Include="Models\PropertyQueryGroup.cs" />
+    <Compile Include="Models\PropertyQuery.cs" />
+    <Compile Include="Models\PropertyQueryResult.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="WebServices\Models\KpiAnswer.cs" />
+    <Compile Include="WebServices\Models\KpiAnswers.cs" />
+    <Compile Include="WebServices\Models\KpiAnswerValues.cs" />
+    <Compile Include="WebServices\Models\KpiGroup.cs" />
+    <Compile Include="WebServices\Models\KpiGroups.cs" />
+    <Compile Include="WebServices\Models\KpiQuestion.cs" />
+    <Compile Include="Entities\OrganisationalUnitInfo.cs" />
+    <Compile Include="WebServices\Models\OUs.cs" />
+    <Compile Include="SessionHandler.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="WebServices\Models\OU.cs" />
+    <Compile Include="Helpers\CacheManager.cs" />
+    <Compile Include="Helpers\ICache.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="WebServices\KoladaTownWebService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="CodeMap\CodeMap160223.dgml" />
+    <None Include="CodeMap\CodeMapDependenciesDomainAndMvc.dgml" />
+    <None Include="CodeMap\CodeMapNamespaces.dgml" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602262311013_InitialMigration.resx">
+      <DependentUpon>201602262311013_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603011242194_CascadeDeleteAddedForCategory.resx">
+      <DependentUpon>201603011242194_CascadeDeleteAddedForCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603011247502_SmallFixesToCategory.resx">
+      <DependentUpon>201603011247502_SmallFixesToCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603051321495_PropertyQueryInfoRenamed.resx">
+      <DependentUpon>201603051321495_PropertyQueryInfoRenamed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603071053518_ChangesToPropertyQueryInfoAndOrganisationalUnitInfo.resx">
+      <DependentUpon>201603071053518_ChangesToPropertyQueryInfoAndOrganisationalUnitInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603071055199_NullablePeriodInPropertyQueryInfo.resx">
+      <DependentUpon>201603071055199_NullablePeriodInPropertyQueryInfo.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

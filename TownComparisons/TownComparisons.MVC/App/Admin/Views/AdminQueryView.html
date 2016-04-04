@@ -1,0 +1,63 @@
+﻿
+<h2>Ändra egenskap</h2>
+<h3>{{ queryName }}</h3>
+
+
+<alert close="closeValidationAlert=true" class="danger" ng-show="!closeValidationAlert && (validationErrors.length > 0 || knownValidationErrors.length > 0)">
+    <p>Kunde inte spara, åtgärda felen och prova igen.</p>
+    <ul ng-show="validationErrors.length > 0">
+        <li ng-repeat="error in validationErrors">{{(error.name != '' ? error.name + ': ' : '') + error.message}}</li>
+    </ul>
+    <a class="close" ng-click="close()">x</a>
+</alert> 
+
+<form novalidate>
+
+    <div>
+        <div ng-show="query.Title != query.OriginalTitle">
+            <label>
+                Original-titel:
+                <span title="Den ursprungliga titeln från datakällan">{{ query.OriginalTitle }}</span>
+            </label>
+        </div>
+        <label>
+            Titel:
+            <input type="text" ng-model="query.Title" class="{{ hasValidationError('query.Title') ? 'error' : '' }}" required />
+        </label>
+        <small class="error" ng-show="hasValidationError('query.Title')">{{ getValidationErrorMessage('query.Title') }}</small>
+        
+    </div>
+
+    <div>
+        <label>
+            Typ:
+            <select ng-options="type.Id as type.Name for type in query.AllTypes" ng-model="query.Type" class="{{ hasValidationError('query.Type') ? 'error' : '' }}" ></select> <!-- o as o for o in query.AllTypes -->
+        </label>
+        <small class="error" ng-show="hasValidationError('query.Type')">{{ getValidationErrorMessage('query.Type') }}</small>
+    </div>
+
+    <div>
+        <label>
+            Period:
+            <input type="text" ng-model="query.Period" class="{{ hasValidationError('query.Period') ? 'error' : '' }}" />
+        </label>
+        <small class="error" ng-show="hasValidationError('query.Period')">{{ getValidationErrorMessage('query.Period') }}</small>
+    </div>
+
+    <div>
+        <input type="button" name="save" ng-click="saveQuery()" value="Spara ändringar" class="button success" />
+    </div>
+
+    <div ng-show="!cancel">
+        <input type="button" name="cancel" ng-click="cancel = true" value="Avbryt" class="tiny button secondary" />
+    </div>
+    <div ng-show="cancel">
+        <label>Avbryta utan att spara?</label>
+        <button class="tiny button default" ng-click="cancelEditQuery()">Ja</button>
+        <input type="button" name="cancel" ng-click="cancel = false" value="X" class="tiny button secondary" />
+    </div>
+
+</form>
+
+
+<a class="close-reveal-modal" ng-click="cancelEditQuery()">&#215;</a>

@@ -1,0 +1,50 @@
+﻿<ul class="breadcrumbs">
+    <li class="current">Admin</li>
+</ul>
+
+
+<div class="container">
+
+    <h2>Administration</h2>
+
+    <alert close="closeValidationAlert=true" class="alert" ng-show="!closeValidationAlert && (errorMessage.length > 0)">
+        <p>{{ errorMessage }}</p>
+        <a class="close" ng-click="close()">x</a>
+    </alert>
+
+
+    <h3>Kategorier</h3>
+
+    <div>
+        <accordion close-others="oneAtATime" ng-repeat="g in groupCategories">
+            <accordion-group is-open="true">
+                <accordion-heading>
+                    <a ng-click="gotoGroupCategory(g.Id); $event.stopPropagation();" class="" title="Redigera grupp-kategori">{{ g.Name }} <i class="fi-pencil"></i> </a>
+                    <a ng-click="removeGroupCategory(g.Id, g.Name); $event.stopPropagation();" class="tiny button alert right" title="Ta bort grupp-kategori"><i class="fi-trash"></i></a>
+                </accordion-heading>
+                <div class="row" ng-repeat="c in g.Categories">
+                    <div class="medium-4 columns">
+                        <a href="/admin/category/{{ c.Id }}">{{ c.Name }}</a>
+                    </div>
+                    <div class="medium-4 columns">
+                        <small>
+                            {{ (c.OrganisationalUnits.length > 0 ? c.OrganisationalUnits.length : 'Inga') }} aktörer, {{ (c.Queries.length > 0 ? c.Queries.length : 'inga') }} egenskaper
+                        </small>
+                    </div>
+                    <div class="medium-3 columns">
+                        <a href="/admin/category/{{ c.Id }}/edit" class="tiny button primary" title="Redigera kategori"><i class="fi-pencil"></i></a>
+                        <a ng-click="removeCategory(c.Id, c.Name)" class="tiny button alert" title="Ta bort kategori"><i class="fi-trash"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <a href="/admin/groupcategory/{{ g.Id }}/newcategory" class="tiny button success">Lägg till kategori</a>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+
+    <div>
+        <a href="/admin/groupcategory/new" class="tiny button success">Lägg till grupp-kategori</a>
+    </div>
+
+</div>

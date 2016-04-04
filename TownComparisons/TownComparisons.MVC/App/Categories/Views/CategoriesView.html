@@ -1,0 +1,60 @@
+﻿<div class="content">
+    
+    <ul class="breadcrumbs">
+        <li class="current" aria-label="Du är här">Kategorier</li>
+    </ul>
+   
+    <div class="container">
+        <h2>Kategorier</h2>
+        
+        <!-- Navbar for different views -->
+        <nav class="row" role="navigation">
+            <div class="menu-bar">
+                <ul class="categories-nav" role="menu">
+                    <li role="menuitem"><a href="#" class="{{ groupClass }}" data-ng-click="showGroupCateogires()">Kategori</a></li>
+                    <li role="menuitem"><a href="#" class="{{ alphabetClass }}" data-ng-click="showAlphabetCategories()">Alla A-Ö</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Seachbar -->
+        <div class="right">
+            <div id="search">
+                <div class="small-4 columns end">
+                    <input role="search" id="search-box" placeholder="Sök" type="text" data-ng-model="filter.name" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar for desc or asc sorting-->
+        <div class="row">
+            <dl class="sub-nav">
+                <dt>Sortera:</dt>
+                <dd class="{{ activeName }}"><a href="" data-ng-click="sortCategoryByName()">Namn</a><img class="{{ visibleName }}" src="/Content/pictures/{{ fileName }}.png" data-ng-click="sortCategoryByName()" /></dd>
+            </dl>
+        </div>
+
+        <!-- Show categories -->
+        <div data-ng-show="alphabet">
+            <ul class="categoriesList" ng-repeat="c in alphabetCategories | filter:filter.name | orderBy:sortByOrder + sortBy">
+                <li>
+                    <a href="#" ng-click="showCategory(c)">{{ c.Name }}</a> ({{ c.OrganisationalUnits.length }})
+                </li>
+            </ul>
+        </div>
+        <div data-ng-show="group">
+            <!-- Show groups -->
+            <ul class="categoriesList" ng-repeat="g in groupCategories | filter:filter.name | orderBy:sortByOrder + sortBy">
+                <li>
+                    <b>{{ g.Name }}</b>
+                    <!-- Show categories inside this group -->
+                    <ul data-ng-repeat="c in g.Categories | orderBy:'Name'">
+                        <li>
+                            <a href="#" data-ng-click="showCategory(c)">{{ c.Name }}</a> ({{ c.OrganisationalUnits.length }})
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
