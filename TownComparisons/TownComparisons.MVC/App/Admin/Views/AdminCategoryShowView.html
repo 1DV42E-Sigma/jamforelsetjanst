@@ -1,0 +1,51 @@
+﻿
+<div class="row">
+
+    <div class="medium-10 columns" id="main">
+        
+        <ul class="breadcrumbs">
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/admin/groupcategory/{{ category.Category.GroupCategory.Id }}">{{ category.Category.GroupCategory.Name }}</a></li>
+            <li class="current">{{ category.Category.Name }}</li>
+        </ul>
+
+        <div class="container" ng-show="categoryHasBeenLoaded">
+
+            <button ng-click="gotoEdit('general')" class="medium button right">Ändra kategori <i class="fi-pencil"></i></button>
+            <h2>{{ pageHeading }}</h2>
+            <p>I grupp-kategorin: <a href="/admin/groupcategory/{{ category.Category.GroupCategory.Id }}">{{ category.Category.GroupCategory.Name }}</a></p>
+            
+            <hr />
+
+            <dl>
+                <dt>Namn</dt>
+                <dd>{{ category.Category.Name }}</dd>
+                <dt>Beskrivning</dt>
+                <dd>{{ category.Category.Description }}</dd>
+            </dl>
+
+            <h3>
+                Aktörer
+            </h3>
+            <ul>
+                <li ng-repeat="o in category.Category.OrganisationalUnits">
+                    <a ng-click="openOperatorEditor(o.OrganisationalUnitId)">{{ o.Name }}</a>
+                </li>
+            </ul>
+            <button ng-click="gotoEdit('operators')" class="tiny button">Välj aktörer <i class="fi-pencil"></i></button>
+
+            <h3>
+                Egenskaper
+            </h3>
+            <ul>
+                <li ng-repeat="q in category.Category.Queries">
+                    <a ng-click="openQueryEditor(q.QueryId)">{{ q.Title }}</a>
+                </li>
+            </ul>
+            <button ng-click="gotoEdit('queries')" class="tiny button">Välj egenskaper <i class="fi-pencil"></i></button>
+
+        </div>
+
+    </div>
+
+</div>

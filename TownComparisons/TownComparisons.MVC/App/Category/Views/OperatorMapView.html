@@ -1,0 +1,23 @@
+﻿<ul class="breadcrumbs">
+    <li><a href="/categories" rel="prev">Kategorier</a></li>
+    <li><a href="/category/{{ category.Id }}" rel="prev">{{ category.Name }}</a></li>
+    <li><a href="/category/{{ category.Id }}/operator/{{ organisationalUnit.OrganisationalUnitId }}" rel="prev">{{ organisationalUnit.Name }}</a></li>
+    <li class="current" aria-label="Du är här">Karta</li>
+</ul>
+
+<h2>{{ organisationalUnit.Name }}</h2>
+{{ setCompareSettingsForOu(organisationalUnit)}}
+<div class="container">
+    <div id="map_canvas">
+        <ui-gmap-google-map center="mapBox.center" zoom="mapBox.zoom" draggable="true">
+            <ui-gmap-marker
+                            coords="{ latitude: organisationalUnit.Latitude, longitude: organisationalUnit.Longitude }"
+                            idkey="organisationalUnit.OrganisationalUnitId">
+                <ui-gmap-window templateUrl="'/App/Category/Views/Partials/_MapOnClick.html'" templateParameter="organisationalUnit">
+                </ui-gmap-window>
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
+</div>
+
+<script src='//maps.googleapis.com/maps/api/js'></script>

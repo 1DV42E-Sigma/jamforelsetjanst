@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Content/Site.css",
+    "inputFile": "sass/Site.scss"
+  },
+  {
+    "outputFile": "Content/Foundations-icon.css",
+    "inputFile": "sass/foundation-icons/Foundations-icon.scss"
+  }
+]

@@ -1,0 +1,156 @@
+﻿
+<div class="row">
+
+    <div class="medium-9 columns" id="main">
+        
+        <ul class="breadcrumbs" ng-show="categoryHasBeenLoaded">
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/admin/groupcategory/{{ category.Category.GroupCategory.Id }}">{{ category.Category.GroupCategory.Name }}</a></li>
+            <li ng-show="updateNotInsert"><a href="./">{{ categoryName }}</a></li>
+            <li class="current">{{ updateNotInsert ? 'Ändra' : 'Ny' }}</li>
+        </ul>
+
+        <div class="container" ng-show="categoryHasBeenLoaded">
+
+            <h2>{{ pageHeading }}</h2>
+            <p ng-show="categoryHasBeenLoaded">I grupp-kategorin: <a href="/admin/groupcategory/{{ category.Category.GroupCategory.Id }}">{{ category.Category.GroupCategory.Name }}</a></p>
+
+            <hr />
+
+            <alert close="closeValidationAlert=true" class="danger" ng-show="!closeValidationAlert && (validationErrors.length > 0 || knownValidationErrors.length > 0)">
+                <p>Kunde inte spara kategorin, åtgärda felen och prova igen.</p>
+                <ul ng-show="validationErrors.length > 0">
+                    <li ng-repeat="error in validationErrors">{{error.name + ': ' + error.message}}</li>
+                </ul>
+                <a class="close" ng-click="close()">x</a>
+            </alert>
+
+
+            <form novalidate>
+
+                <!--navbar for simple or detailed list -->
+                <nav role="navigation" class="row">
+                    <div class="menu-bar">
+                        <ul class="category-nav">
+                            <li role="menuitem"><a href="#" class="{{ editMode == 'general' ? 'active' : '' }}" ng-click="editMode = 'general'">Allmänt</a></li>
+                            <li role="menuitem"><a href="#" class="{{ editMode == 'operators' ? 'active' : '' }}" ng-click="editMode = 'operators'">Aktörer</a></li>
+                            <li role="menuitem"><a href="#" class="{{ editMode == 'queries' ? 'active' : '' }}" ng-click="editMode = 'queries'">Egenskaper</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div ng-show="editMode == 'general'">
+
+                    <label>
+                        Namn:
+                        <input type="text" ng-model="category.Category.Name" class="{{ hasValidationError('category.Name') ? 'error' : '' }}" />
+                    </label>
+                    <small class="error" ng-show="hasValidationError('category.Name')">{{ getValidationErrorMessage('category.Name') }}</small>
+
+                    <label>
+                        Beskrivning:
+                        <textarea ng-model="category.Category.Description" class="{{ hasValidationError('category.Description') ? 'error' : '' }}" rows="4"></textarea>
+                    </label>
+                    <small class="error" ng-show="hasValidationError('category.Description')">{{ getValidationErrorMessage('category.Description') }}</small>
+
+                </div>
+
+                <div ng-show="editMode == 'operators'">
+
+                    <dl class="sub-nav">
+                        <dt>Visa:</dt>
+                        <dd class="{{ operatorsStateFilter == 'All' ? 'active' : '' }}"><a href="" ng-click="setOperatorsStateFilter('All')">Alla</a></dd>
+                        <dd class="{{ operatorsStateFilter == 'Chosen' ? 'active' : '' }}"><a href="" ng-click="setOperatorsStateFilter('Chosen')">Valda</a></dd>
+                        <dd class="{{ operatorsStateFilter == 'Unchosen' ? 'active' : '' }}"><a href="" ng-click="setOperatorsStateFilter('Unchosen')">Ej valda</a></dd>
+                    </dl>
+
+                    <div class="row">
+                        <div class="large-6 columns">
+                            <label>
+                                Filtrera:
+                                <input type="text" name="searchOperatorsTitle" ng-model="searchOperatorsTitle" />
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="large-6 columns" ng-repeat="o in category.AllOrganisationalUnits | filter:searchForOperators">
+                            <label><input type="checkbox" ng-model="o.Use"> {{ o.Name }}</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-show="editMode == 'queries'">
+
+                    <dl class="sub-nav">
+                        <dt>Visa:</dt>
+                        <dd class="{{ queriesStateFilter == 'All' ? 'active' : '' }}"><a href="" ng-click="setQueriesStateFilter('All')">Alla</a></dd>
+                        <dd class="{{ queriesStateFilter == 'Chosen' ? 'active' : '' }}"><a href="" ng-click="setQueriesStateFilter('Chosen')">Valda</a></dd>
+                        <dd class="{{ queriesStateFilter == 'Unchosen' ? 'active' : '' }}"><a href="" ng-click="setQueriesStateFilter('Unchosen')">Ej valda</a></dd>
+                    </dl>
+
+                    <div class="row">
+                        <div class="large-6 columns">
+                            <label>
+                                Generell (söker i både grupptitel och frågetitlar):
+                                <input type="text" name="searchQueryAll" ng-model="searchQueryAll" />
+                            </label>
+                        </div>
+                        <div class="large-6 columns">
+                            <label>
+                                Fråge-titel:
+                                <input type="text" name="searchQueryTitle" ng-model="searchQueryTitle" />
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr />
+
+
+                    <div class="group-categories">
+                        <accordion close-others="oneAtATime" ng-repeat="qg in category.AllPropertyQueryGroups | filter:searchForGroup">
+                            <accordion-group heading="Grupp: {{ qg.Title }}" is-open="{{ qg.AnyQueriesToUse }}">
+                                <div class="row" ng-repeat="q in qg.Queries | filter:searchForQuery">
+                                    <div class="large-12 columns">
+                                        <label><input type="checkbox" ng-model="q.Use"> {{ q.Title }}</label>
+                                    </div>
+                                </div>
+                            </accordion-group>
+                        </accordion>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="medium-12 large-2 columns end" id="saveChangesPanel" ng-show="categoryHasBeenLoaded">
+        <div>
+            <div>
+                <button name="save" ng-click="saveCategory()" class="button success">Spara {{ updateNotInsert ? 'ändringar' : 'kategori' }}</button>
+            </div>
+
+            <div ng-show="!cancel">
+                <input type="button" name="cancel" ng-click="cancel = true" value="Avbryt" class="tiny button secondary" />
+            </div>
+            <div ng-show="cancel">
+                <div>
+                    <label>Avbryta utan att spara?</label>
+                </div>
+                    <input type="button" name="cancel" ng-click="cancelEditCategory()" value="Ja" class="tiny button default" />
+                    <input type="button" name="cancel" ng-click="cancel = false" value="X" class="tiny button secondary" />
+            </div>
+
+            <div ng-show="scrollPos > 100">
+                <a class="button secondary" ng-click="scrollToTop()"><i class="fi-arrow-up"></i></a>
+            </div>
+        </div>
+    </div>
+
+</div>

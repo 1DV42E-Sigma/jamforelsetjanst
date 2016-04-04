@@ -1,0 +1,25 @@
+﻿<nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area" >
+        <li class="name">
+            <h1>
+                <a href="/">
+                    <!-- Kommunal jämförelsetjänst -->
+                    <img src="~/Content/pictures/Kristianstad_logo_cmyk.png" alt="Kristandstad kommun" style="height: 45px" />
+                </a>
+            </h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+        <ul class="left" role="navigation" aria-labelledby="leftnavheading">
+            <li id="li1">
+                <a href="@Url.Action("Index", "Admin")" aria-describedby="li1" title="Länk till administrering">Admin</a>
+            </li>
+            <li id="li2">
+                <a href="@Url.RouteUrl("categories")" aria-describedby="li2" title="Länk till kategorier">Kategorier</a>
+            </li>
+        </ul>
+    </section>
+</nav>

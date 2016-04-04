@@ -1,0 +1,87 @@
+﻿<section class="content">
+    <nav role="navigation">
+        <ul class="breadcrumbs" role="menu">
+            <li role="menuitem"><a href="/categories" rel="prev">Kategorier</a></li>
+            <li role="menuitem"><a href="/category/{{ category.Id }}" rel="prev">{{ category.Name }}</a></li>
+            <li class="current" aria-label="Du är här">{{ organisationalUnit.Name }}</li>
+        </ul>
+    </nav>
+    <!-- Show Operator -->
+    <div data-ng-app="operator" data-ng-controller="rootViewModel" ng-model="organisationalUnit">
+
+        {{ setCompareSettingsForOu(organisationalUnit)}}
+
+        <div class="container">
+            <div class="button-div right">
+                <div class="row">
+                    <div class="{{ organisationalUnit.class }}"><a  data-ng-click="toggleOperators(organisationalUnit)"><i class="{{ organisationalUnit.icon }}"></i>{{ organisationalUnit.text}}</a></div>
+
+                </div>
+                <div class="row">
+                    <div class="mapClass">
+                        <a href="" ng-click="showOperatorMap(organisationalUnit.OrganisationalUnitId)">Karta</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <!--<p class="input-group">
+                    <div>
+                        <h3>{{ organisationalUnit.Category_Id }}</h3>
+                    </div>
+                </p>-->
+                <p class="input-group">
+                    <div>
+                        <h3>{{ organisationalUnit.Name }}</h3>
+                    </div>
+                </p>
+                   
+                <div class="table-header small-4 columns">
+                    <div ng-if="organisationalUnit.ImagePath != 'default.jpg' && organisationalUnit.ImagePath != 'dagis.jpg' && organisationalUnit.ImagePath != 'elderly.jpg' && organisationalUnit.ImagePath != 'grund.jpg' && organisationalUnit.ImagePath != 'sjukhus.jpg' && organisationalUnit.ImagePath != 'vardcentral.jpg'">
+                        <img src="{{ organisationalUnit.ImagePath }}" alt="Skolans bild" />
+                    </div>
+                    <div ng-if="organisationalUnit.ImagePath == 'default.jpg' || organisationalUnit.ImagePath == 'dagis.jpg' || organisationalUnit.ImagePath == 'elderly.jpg' || organisationalUnit.ImagePath == 'grund.jpg' || organisationalUnit.ImagePath == 'sjukhus.jpg' || organisationalUnit.ImagePath == 'vardcentral.jpg'">
+                        <img src="/Content/pictures/{{ organisationalUnit.ImagePath }}" />
+                    </div>
+                </div>
+                <p class="input-group">
+                    <span class="input-group-addon"></span>
+                    <div>
+                        {{ organisationalUnit.ShortDescription }}
+                    </div>
+                </p>
+                <p class="input-group">
+                    <h4>Mer om oss</h4>
+                    <div>
+                        {{ organisationalUnit.LongDescription }}
+                    </div>
+                </p>
+                <hr />
+                <h4>Kontaktinformation</h4>
+                <dl>
+                    <dt>Adress</dt>
+                    <dd>
+                        {{ organisationalUnit.Address }}<br />
+                        Sverige
+                    </dd>
+                    <dt>Telefon</dt>
+                    <dd>{{ organisationalUnit.Telephone }}</dd>
+                    <dt>E-post</dt>
+                    <dd><a href="{{ organisationalUnit.Email }}"> {{ organisationalUnit.Email }}</a></dd>
+                    <dt>Webbplats</dt>
+                    <dd><a href="{{ organisationalUnit.Website }}">{{ organisationalUnit.Website }}</a></dd>    
+                </dl>
+                <hr />
+                <h4>Övrig information</h4>
+                <p class="input-group">
+                    <div>
+                        {{ organisationalUnit.Other }}
+                    </div>
+                </p>
+                <p class="input-group">
+                    <span class="input-group-addon">Organisationsform: {{ organisationalUnit.OrganisationalForm }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</section>

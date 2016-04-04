@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Hitta och jämför service";
+}
+@section scripts {
+    <script src="~/App/Categories/App.js"></script>
+    <script src="~/App/Categories/ViewModels/RootViewModel.js"></script>
+    <script src="~/App/Categories/ViewModels/CategoriesViewModel.js"></script>
+    <script src="~/App/Category/ViewModels/OperatorViewModel.js"></script>
+    <script src="~/App/Category/ViewModels/CategoryViewModel.js"></script>
+    <script src="~/App/Category/ViewModels/CompareViewModel.js"></script>
+}
+
+<div data-ng-app="category" ng-cloak id="category" data-ng-controller="rootViewModel">
+    <div class="row">
+
+        <div class="small-8 columns" id="main" data-ng-view>
+        </div>
+
+        <div class="small-3 columns end" id="compare" data-ng-show="listItems.length > 0" aria-hidden="true">
+            <div id="comparelist-head"></div>
+            <div id="comparelist-body" class="line">
+                <ul data-ng-repeat="subject in listItems">
+                    <li class="row" role="listitem">
+
+                        <h5 class="small-9 columns">
+                            <a data-ng-href="/{{subject.Url}}" title="Länk till {{subject.Name}}">{{subject.Name}}</a>
+                        </h5>
+
+                        <i class="fi-x pointer removeBtn small-2 columns end"
+                           data-ng-click="deleteOperator(subject)"
+                           role="button" 
+                           title="Radera" 
+                           aria-hidden="true"></i>
+                    </li>
+                </ul>
+            </div>
+            <div id="comparelist-footer" class="row">
+
+                <button id="clear-listBtn" 
+                        class="tiny button"
+                        data-ng-click="deleteAllOperators()"
+                        title="Ta bort alla objekt i listan">
+                    Rensa alla
+                </button>
+                <button id="compareBtn"
+                        class="tiny button"
+                        data-ng-click="compare()"
+                        data-ng-disabled="listItems.length < 2" 
+                        title="Gå till jämförelsesidan">Jämför</button>
+            </div>
+        </div>
+    </div>
+
+</div>

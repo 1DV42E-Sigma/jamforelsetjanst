@@ -1,0 +1,89 @@
+﻿<nav role="navigation">
+    <ul class="breadcrumbs">
+        <li><a href="/categories" rel="prev">Kategorier</a></li>
+        <li><a href="/category/{{ categoryID }}" rel="prev">{{ category.Name }}</a></li>
+        <li class="current" aria-label="Du är här">Jämförelse</li>
+    </ul>
+</nav>
+<h2>Jämförelse</h2>
+
+
+<section class="container">
+    <div class="table-container">
+        <!--Tabel with chosen operators-->
+        <table class="dataTable row-border hover" datatable="ng">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td data-ng-repeat="ou in organisationalUnitIdsToCompare">
+                        <div data-ng-repeat="ouInfo in compareOrganisationalUnits.OrganisationalUnits" class="text-center">
+                            <div data-ng-if="ou == ouInfo.OrganisationalUnitId">
+                                <div data-ng-if="ouInfo.ImagePath != 'default.jpg'">
+                                    <img src="{{ ouInfo.ImagePath }}" />
+                                </div>
+                                <div data-ng-if="ouInfo.ImagePath == 'default.jpg'">
+                                    <img src="/Content/pictures/grund.jpg" />
+                                </div>
+                                {{ ouInfo.Name }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="text80">Adress</span></td>
+                    <td data-ng-repeat="ou in organisationalUnitIdsToCompare">
+                        <div data-ng-repeat="ouInfo in compareOrganisationalUnits.OrganisationalUnits">
+                            <div data-ng-if="ou == ouInfo.OrganisationalUnitId"><span class="text80">{{ ouInfo.Address }}</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr data-ng-if="posLat != undefined && posLng != undefined">
+                    <td><span class="text80">Distans</span></td>
+                    <td data-ng-repeat="ou in organisationalUnitIdsToCompare">
+                        <div data-ng-repeat="ouInfo in compareOrganisationalUnits.OrganisationalUnits">
+                            <div data-ng-if="ou == ouInfo.OrganisationalUnitId"><span class="text80">{{ getDistanceBetweenPositions(ouInfo) }} km</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="text80">Kontakt</span></td>
+                    <td data-ng-repeat="ou in organisationalUnitIdsToCompare">
+                        <div ng-repeat="ouInfo in compareOrganisationalUnits.OrganisationalUnits">
+                            <div data-ng-if="ou == ouInfo.OrganisationalUnitId"><span class="text80">{{ ouInfo.Contact }}</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="text80">Telefon</span></td>
+                    <td data-ng-repeat="ou in organisationalUnitIdsToCompare">
+                        <div ng-repeat="ouInfo in compareOrganisationalUnits.OrganisationalUnits">
+                            <div data-ng-if="ou == ouInfo.OrganisationalUnitId"><span class="text80">{{ ouInfo.Telephone }}</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="text80">E-mail</span></td>
+                    <td data-ng-repeat="ou in organisationalUnitIdsToCompare">
+                        <div data-ng-repeat="ouInfo in compareOrganisationalUnits.OrganisationalUnits">
+                            <div data-ng-if="ou == ouInfo.OrganisationalUnitId"><span class="text80">{{ ouInfo.Email }}</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><br /><strong>Resultat</strong></td>
+                    <td data-ng-repeat="ou in organisationalUnitIdsToCompare"></td>
+                </tr>
+                <tr data-ng-repeat="cr in compareResults">
+                    <td><span class="text80">{{ cr.Query.Title }}</span></td>
+                    <td data-ng-repeat="res in cr.Results">
+                                            
+                        <div ng-init="pv = res.PeriodToUse" ng-include src="'/App/Category/Views/Partials/_CompareTypesView.html'"></div>
+                    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

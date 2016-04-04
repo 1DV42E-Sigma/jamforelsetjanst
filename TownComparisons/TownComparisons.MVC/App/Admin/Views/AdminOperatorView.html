@@ -1,0 +1,61 @@
+﻿<h2>Ändra aktör</h2>
+<h3>{{ operatorName }}</h3>
+
+
+<alert close="closeValidationAlert=true" class="danger" ng-show="!closeValidationAlert && (validationErrors.length > 0 || knownValidationErrors.length > 0)">
+    <p>Kunde inte spara, åtgärda felen och prova igen.</p>
+    <ul ng-show="validationErrors.length > 0">
+        <li ng-repeat="error in validationErrors">{{(error.name != '' ? error.name + ': ' : '') + error.message}}</li>
+    </ul>
+    <a class="close" ng-click="close()">x</a>
+</alert>
+
+<form novalidate>
+
+    <div>
+        <label>Bild:</label>
+        <img src="/uploads/operator_images/{{ operator.ImagePath }}" ng-show="operator.ImagePath != null && operator.ImagePath != ''"
+             width="200" />
+    </div>
+    <div class="tiny button" ngf-select="saveOperatorImage($file)" ngf-pattern="'image/*'"
+         ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+        <i class="fi-upload"></i>
+        Ladda upp ny bild
+        <small class="error" ng-show="hasValidationError('organisationalUnit.ImagePath')">{{ getValidationErrorMessage('organisationalUnit.ImagePath') }}</small>
+    </div>
+
+
+    <div ng-repeat="objectField in objectFields">
+        <label>
+            {{ objectField.title }}:
+            <div ng-switch on="objectField.textarea">
+                <div ng-switch-when="true">
+                    <textarea rows="5" ng-model="operator[objectField.field]" class="{{ hasValidationError('organisationalUnit.' + objectField.field) ? 'error' : '' }}"></textarea>
+                </div>
+                <div ng-switch-when="false">
+                    <input type="Text" id="{{ objectField.field }}" ng-model="operator[objectField.field]" class="{{ hasValidationError('organisationalUnit.' + objectField.field) ? 'error' : '' }}" placeholder="{{ objectField.field == 'Address' ? 'Skriv adress...' : '' }}" />
+                    <button ng-show="objectField.field == 'Address'" ng-click="getGeo()">Hitta koordinater</button>
+                </div>
+            </div>
+        </label>
+        <small class="error" ng-show="hasValidationError('organisationalUnit.' + objectField.field)">{{ getValidationErrorMessage('organisationalUnit.' + objectField.field) }}</small>
+    </div>
+
+
+
+    <div>
+        <input type="button" name="save" ng-click="saveOperator()" value="Spara ändringar" class="button success" />
+    </div>
+
+    <div ng-show="!cancel">
+        <input type="button" name="cancel" ng-click="cancel = true" value="Avbryt" class="tiny button secondary" />
+    </div>
+    <div ng-show="cancel">
+        <label>Avbryta utan att spara?</label>
+        <button class="tiny button default" ng-click="cancelEditOperator()">Ja</button>
+        <input type="button" name="cancel" ng-click="cancel = false" value="X" class="tiny button secondary" />
+    </div>
+
+</form>
+
+<a class="close-reveal-modal" ng-click="cancelEditOperator()">&#215;</a>

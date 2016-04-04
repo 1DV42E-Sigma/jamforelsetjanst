@@ -1,0 +1,50 @@
+﻿<!-- This view is showing the results from the comparison -->
+<div ng-switch on="cr.Query.Type" title="Data för period: {{ pv.Period }}. Värde: {{ pv.ValueToUse.Value }}">
+
+    <div ng-switch-when="percent">
+        <div ng-if="pv.ValueToUse.Value != null">
+            <div class="answer-percent-bar">
+                <div class="percentageBox">
+                    <div class="percentage" style="width: {{pv.ValueToUse.Value}}%"></div>
+                </div>
+            </div>
+            <div class="answer-value-box">
+                <p class="text80">{{ roundOneDecimal(pv.ValueToUse.Value) }} %</p>
+            </div>
+        </div>
+        <div ng-if="pv.ValueToUse.Value == null">
+            <small>Ingen data</small>
+        </div>
+    </div>
+
+    <div ng-switch-when="percentage">
+        <div ng-if="pv.ValueToUse.Value != null">
+            <div class="colorGreen" ng-if="pv.ValueToUse.Value > 0.000">
+                <p class="text80">+{{roundOneDecimal(pv.ValueToUse.Value)}} %</p>
+            </div>
+            <div class="colorBlue" ng-if="pv.ValueToUse.Value == 0.000">
+                <p class="text80">{{roundOneDecimal(pv.ValueToUse.Value)}} %</p>
+            </div>
+            <div class="colorRed" ng-if="pv.ValueToUse.Value < 0.000">
+                <p class="text80">{{roundOneDecimal(pv.ValueToUse.Value)}} %</p>
+            </div>
+        </div>
+        <div ng-if="pv.ValueToUse.Value == null">
+            <small>Ingen data</small>
+        </div>
+    </div>
+
+    <div ng-switch-when="yesno">
+        <div ng-if="pv.ValueToUse.Value == 0.0">
+            <p class="text80">Nej</p>
+        </div>
+        <div ng-if="pv.ValueToUse.Value == 1.0">
+            <p class="text80">Ja</p>
+        </div>
+    </div>
+
+    <div ng-switch-default>
+        <p class="text80">{{ pv.ValueToUse.Value }}</p>
+    </div>
+
+</div>
