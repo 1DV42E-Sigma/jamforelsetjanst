@@ -16,7 +16,7 @@ namespace TownComparisons.MVC
             routes.MapRoute(
                 name: "admin",
                 url: "admin/{*catchall}",
-                defaults: new { controller = "Angular", action = "Home" });
+                defaults: new { controller = "Angular", action = "Admin" });
 
             routes.MapRoute(
                 name: "categories",
@@ -31,7 +31,7 @@ namespace TownComparisons.MVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Angular", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "Angular", action = "Category", id = UrlParameter.Optional }
             );
         }
     }

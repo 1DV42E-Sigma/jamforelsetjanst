@@ -17,7 +17,7 @@
         $scope.sortOuByName();
         $scope.showDetailed();
         $scope.detailedClass = "active";
-        $scope.getClientPosition();
+        //$scope.getClientPosition();
     }
 
     //Shows Detailed view.
@@ -49,6 +49,24 @@
         $scope.simpleClass = "";
         $scope.mapClass = "active";
         $scope.mapOperators();
+    }
+
+    $scope.list = [];
+    $scope.text = 'hello';
+    $scope.submit = function () {
+        if ($scope.address) {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ "address": $scope.address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
+                    var location = results[0].geometry.location,
+                        lat = location.lat(),
+                        lng = location.lng();
+
+                        $scope.posLat = lat;
+                        $scope.posLng = lng;
+                }
+            });
+        }
     }
 
     //Gives the maps its start position.
@@ -124,6 +142,7 @@
                 $scope.$apply(function () {
                     $scope.posLat = position.coords.latitude;
                     $scope.posLng = position.coords.longitude;
+                    
                 });
             });
         }
@@ -131,6 +150,7 @@
 
     //Gets distance between client and operators positions.
     $scope.getDistanceBetweenPositions = function (ou) {
+        console.log($scope.posLat);
         var lat1 = ou.Latitude;
         var lon1 = ou.Longitude;
 

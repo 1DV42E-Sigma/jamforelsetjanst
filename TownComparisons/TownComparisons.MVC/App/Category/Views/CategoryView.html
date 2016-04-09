@@ -38,7 +38,7 @@
         <dl class="sub-nav">
             <dt>Sortera:</dt>
             <dd class="{{ activeName }}"><a href="" data-ng-click="sortOuByName()">Namn</a><img alt="Sortering" class="{{ visibleName }}" data-ng-src="/Content/pictures/{{ sortOrder }}.png" data-ng-click="sortOuByName()" /></dd>
-            <dd class="{{ activeAddress }}"><a href="" data-ng-click="sortOuByAddress()">Adress</a><img alt="Sortering" class="{{ visibleAddress }}" data-ng-src="/Content/pictures/{{ sortOrder }}.png" data-ng-click="sortOuByAddress()" /></dd>
+            <dd class="{{ activeAddress }}"><a href="" data-ng-click="sortOuByAddress()">Adress</a><img atl="Sortering" class="{{ visibleAddress }}" data-ng-src="/Content/pictures/{{ sortOrder }}.png" data-ng-click="sortOuByAddress()" /></dd>
             <dd data-ng-if="posLat != undefined && posLng != undefined" class="{{ activeDistance }}"><a href="" data-ng-click="sortOuByDistance()">Distans</a></dd>
         </dl>
     </div>
@@ -47,6 +47,16 @@
     <div data-ng-show="simple">
         <div ng-show="!category.OrganisationalUnits.length"><p>Det finns tyvärr inga aktörer tillgängliga i den här kategorin.</p></div>
         <div ng-show="category.OrganisationalUnits.length">
+
+            <!-- addressbar -->
+            <div class="large-7 columns">
+                <form ng-submit="submit()">
+                    Skriv in adress för att kolla avstånd till aktör:
+                    <input type="text" ng-model="address" placeholder="Skriv in adress" name="text" required />
+                    <input type="submit" class="button tiny" id="submit" value="Submit" />
+                </form>
+            </div>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -80,6 +90,18 @@
 
     <!-- Show detailed table -->
     <div data-ng-show="detailed">
+
+        <!-- addressbar -->
+        <div class="large-12 columns">
+            <div class="large-7 columns">
+                <form ng-submit="submit()">
+                    Skriv in adress för att kolla avstånd till aktör:
+                    <input type="text" ng-model="address" placeholder="Skriv in adress" name="text" required />
+                    <input type="submit" class="button tiny" id="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+
         <div data-ng-show="!category.OrganisationalUnits.length"><p>Det finns tyvärr inga aktörer tillgängliga i den här kategorin.</p></div>
         <div class="operator-loop" data-ng-repeat="ou in category.OrganisationalUnits | filter:filter.name | orderBy:sortBy">
             {{ setCompareSettingsForOu(ou)}}
@@ -102,7 +124,7 @@
                     <div>{{ ou.ShortDescription }}</div>
                     <div><strong>Adress:</strong> {{ ou.Address }}</div>
                     <div data-ng-if="getDistanceBetweenPositions(ou) >= 0.0"><strong>Distans:</strong> {{ getDistanceBetweenPositions(ou) }} km</div>
-                </div>
+                    </div>
                 <div class="small-3 columns">
                     <div class="row">
                         <div class="{{ ou.class }} fixed-font-size"><a href="" data-ng-click="toggleOperators(ou)"><i class="{{ ou.icon }}"></i>{{ ou.text}}</a></div>
