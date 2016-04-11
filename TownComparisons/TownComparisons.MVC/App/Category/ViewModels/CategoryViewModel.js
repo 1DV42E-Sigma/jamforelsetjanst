@@ -51,10 +51,11 @@
         $scope.mapOperators();
     }
 
-    $scope.list = [];
-    $scope.text = 'hello';
+    //$scope.list = [];
+    //$scope.text = 'hello';
     $scope.submit = function () {
         if ($scope.address) {
+            $scope.lastAddress = $scope.address;
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ "address": $scope.address }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
@@ -64,6 +65,7 @@
 
                         $scope.posLat = lat;
                         $scope.posLng = lng;
+                        $scope.$apply();
                 }
             });
         }
@@ -136,7 +138,7 @@
     }
 
     //Gets clients position.
-    $scope.getClientPosition = function () {
+    /*$scope.getClientPosition = function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 $scope.$apply(function () {
@@ -146,11 +148,10 @@
                 });
             });
         }
-    }
+    }*/
 
     //Gets distance between client and operators positions.
     $scope.getDistanceBetweenPositions = function (ou) {
-        console.log($scope.posLat);
         var lat1 = ou.Latitude;
         var lon1 = ou.Longitude;
 

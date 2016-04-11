@@ -49,12 +49,17 @@
         <div ng-show="category.OrganisationalUnits.length">
 
             <!-- addressbar -->
-            <div class="large-7 columns">
-                <form ng-submit="submit()">
-                    Skriv in adress för att kolla avstånd till aktör:
-                    <input type="text" ng-model="address" placeholder="Skriv in adress" name="text" required />
-                    <input type="submit" class="button tiny" id="submit" value="Submit" />
-                </form>
+            <div class="addressSearch">
+                <div class="large-12 columns">
+                    <div class="large-8 columns">
+                        <form ng-submit="submit()">
+                            Skriv in adress för att kolla avstånd till aktör:
+                            <input type="text" ng-model="address" placeholder="Skriv in adress" name="text" required />
+                            <input type="submit" class="button tiny" id="submit" value="Kolla distans" />
+                        </form>
+                    </div>
+                </div>
+                <div data-ng-show="lastAddress.length"><strong>Senast sökt address:</strong> {{lastAddress}}</div>
             </div>
 
             <table class="table">
@@ -92,14 +97,17 @@
     <div data-ng-show="detailed">
 
         <!-- addressbar -->
-        <div class="large-12 columns">
-            <div class="large-7 columns">
-                <form ng-submit="submit()">
-                    Skriv in adress för att kolla avstånd till aktör:
-                    <input type="text" ng-model="address" placeholder="Skriv in adress" name="text" required />
-                    <input type="submit" class="button tiny" id="submit" value="Submit" />
-                </form>
+        <div class="addressSearch">
+            <div class="large-12 columns">
+                <div class="large-8 columns">
+                    <form ng-submit="submit()">
+                        Skriv in adress för att kolla avstånd till aktör:
+                        <input type="text" ng-model="address" placeholder="Skriv in adress" name="text" required />
+                        <input type="submit" class="button tiny" id="submit" value="Kolla distans" />
+                    </form>
+                </div>
             </div>
+            <div data-ng-show="lastAddress.length"><strong>Senast sökt address:</strong> {{lastAddress}}</div>
         </div>
 
         <div data-ng-show="!category.OrganisationalUnits.length"><p>Det finns tyvärr inga aktörer tillgängliga i den här kategorin.</p></div>

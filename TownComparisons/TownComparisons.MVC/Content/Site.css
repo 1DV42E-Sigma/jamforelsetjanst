@@ -6293,6 +6293,11 @@ th.hide-for-touch {
   -webkit-border-bottom-right-radius: 2px;
   border-bottom-right-radius: 2px; }
 
+.addressSearch {
+  border: 1px solid #eee;
+  padding: 10px;
+  min-height: 150px; }
+
 .table-container {
   width: 100%;
   overflow-y: auto;
