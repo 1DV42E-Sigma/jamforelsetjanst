@@ -4,6 +4,12 @@
 @import "foundation";
 @import "foundation.mvc";
 
+.addressSearch{
+    border: 1px solid #eee;
+    padding: 10px;
+    min-height: 150px;
+}
+
 .table-container
 {
 	width: 100%;
