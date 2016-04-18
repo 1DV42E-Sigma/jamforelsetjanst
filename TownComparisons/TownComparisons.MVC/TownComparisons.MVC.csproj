@@ -181,12 +181,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Admin\OrganisationalUnitInfoViewModel.cs" />
     <Compile Include="ViewModels\Admin\PropertyQueryInfoViewModel.cs" />
+    <Compile Include="ViewModels\Shared\ContactViewModel.cs" />
     <Compile Include="ViewModels\Shared\AlphabetViewModel.cs" />
     <Compile Include="ViewModels\Shared\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\Shared\CategoryPropertyResultsViewModel.cs" />
     <Compile Include="ViewModels\Shared\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Admin\CategoryWithUnusedViewModel.cs" />
     <Compile Include="ViewModels\Shared\GroupCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Shared\ContactsViewModel.cs" />
     <Compile Include="ViewModels\Shared\OrganisationalUnitsViewModel.cs" />
     <Compile Include="ViewModels\Shared\OrganisationalUnitInfoViewModel.cs" />
     <Compile Include="ViewModels\Admin\PropertyQueryGroupViewModel.cs" />

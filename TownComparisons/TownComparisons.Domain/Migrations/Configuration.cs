@@ -81,6 +81,14 @@ namespace TownComparisons.Domain.Migrations
                 Type = PropertyQuery.TYPE_PERCENT
             };
 
+            Contact con1 = new Contact()
+            {
+                FirstName = "Sven-Erik",
+                LastName = "Nilsson",
+                Email = "sven-erik.nilsson@utb.kristianstad.se",
+                Role = "Rektor",
+                Telephone = "044-13 60 44"
+            };
             OrganisationalUnitInfo ou1 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V15E129000301",
@@ -97,6 +105,16 @@ namespace TownComparisons.Domain.Migrations
                 Latitude = 56.019305,
                 Longitude = 14.125117,
                 Other = "Grundskola",
+            };
+            ou1.Contacts.Add(con1);
+
+            Contact con2 = new Contact()
+            {
+                FirstName = "Per",
+                LastName = "Gustafsson",
+                Email = "per.gustafsson@kristianstad.se",
+                Role = "Rektor",
+                Telephone = "044-136021"
             };
             OrganisationalUnitInfo ou2 = new OrganisationalUnitInfo()
             {
@@ -115,6 +133,16 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.196342,
                 Other = "Grundskola",
             };
+            ou2.Contacts.Add(con2);
+
+            Contact con3 = new Contact()
+            {
+                FirstName = "Linus",
+                LastName = "Pålsson",
+                Email = "linus.palsson@kristianstad.se",
+                Role = "Rektor",
+                Telephone = "044-134150"
+            };
             OrganisationalUnitInfo ou3 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V15E129000701",
@@ -131,6 +159,16 @@ namespace TownComparisons.Domain.Migrations
                 Latitude = 56.011727,
                 Longitude = 14.098495,
                 Other = "Grundskola",
+            };
+            ou3.Contacts.Add(con3);
+
+            Contact con4 = new Contact()
+            {
+                FirstName = "Marcus",
+                LastName = "Svensson",
+                Email = "marcus.svensson@utb.kristianstad.se",
+                Role = "Rektor 7-9",
+                Telephone = "0733-134651"
             };
             OrganisationalUnitInfo ou4 = new OrganisationalUnitInfo()
             {
@@ -149,6 +187,16 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.286111,
                 Other = "Grundskola",
             };
+            ou4.Contacts.Add(con4);
+
+            Contact con5 = new Contact()
+            {
+                FirstName = "Eva",
+                LastName = "Axelsson",
+                Email = "eva.axelsson@utb.kristianstad.se",
+                Role = "Rektor 4-9",
+                Telephone = "044-134503"
+            };
             OrganisationalUnitInfo ou5 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V15E129002401",
@@ -166,6 +214,7 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 13.966987,
                 Other = "Grundskola",
             };
+            ou5.Contacts.Add(con5);
 
             Category c1 = new Category()
             {
@@ -227,6 +276,14 @@ namespace TownComparisons.Domain.Migrations
                 Type = PropertyQuery.TYPE_STANDARD
             };
 
+            Contact con6 = new Contact()
+            {
+                FirstName = "Ann-Sofi",
+                LastName = "Ericson",
+                Email = "ann-sofi.ericson@kristianstad.se",
+                Role = "Rektor",
+                Telephone = "044-13 52 91"
+            };
             OrganisationalUnitInfo ou6 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "1290",
@@ -243,6 +300,16 @@ namespace TownComparisons.Domain.Migrations
                 Latitude = 56.026218,
                 Longitude = 14.156947,
                 Other = "Gymnasieskola",
+            };
+            ou6.Contacts.Add(con6);
+
+            Contact con7 = new Contact()
+            {
+                FirstName = "Joakim",
+                LastName = "Andersson",
+                Email = "joakim.andersson@kristianstad.se",
+                Role = "Rektor Högskoleförberedande programmen",
+                Telephone = "044-136502"
             };
             OrganisationalUnitInfo ou7 = new OrganisationalUnitInfo()
             {
@@ -261,6 +328,16 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.175278,
                 Other = "Gymnasieskola",
             };
+            ou7.Contacts.Add(con7);
+
+            Contact con8 = new Contact()
+            {
+                FirstName = "Christel",
+                LastName = "Lundin",
+                Email = "christel.lundin@kristianstad.se",
+                Role = "Rektor",
+                Telephone = "044135270"
+            };
             OrganisationalUnitInfo ou8 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V17E40766349",
@@ -277,6 +354,16 @@ namespace TownComparisons.Domain.Migrations
                 Latitude = 56.027327,
                 Longitude = 14.161329,
                 Other = "Gymnasieskola",
+            };
+            ou8.Contacts.Add(con8);
+
+            Contact con9 = new Contact()
+            {
+                FirstName = "Anne",
+                LastName = "Ryden",
+                Email = "lejonskolan@telia.com",
+                Role = "Rektor",
+                Telephone = "044-125080"
             };
             OrganisationalUnitInfo ou9 = new OrganisationalUnitInfo()
             {
@@ -295,6 +382,16 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.15853,
                 Other = "Gymnasieskola",
             };
+            ou9.Contacts.Add(con9);
+
+            Contact con10 = new Contact()
+            {
+                FirstName = "Helene",
+                LastName = "Kjellgren",
+                Email = "helene.kjellgren@it-gymnasiet.se",
+                Role = "Rektor",
+                Telephone = "044-20 59 80"
+            };
             OrganisationalUnitInfo ou10 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V17E53691739",
@@ -312,6 +409,7 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.153876,
                 Other = "Gymnasieskola",
             };
+            ou10.Contacts.Add(con10);
 
             Category c4 = new Category()
             {
@@ -403,6 +501,14 @@ namespace TownComparisons.Domain.Migrations
                 Type = PropertyQuery.TYPE_STANDARD
             };
 
+            Contact con11 = new Contact()
+            {
+                FirstName = "Niklas",
+                LastName = "Lindqvist",
+                Email = "niklas.lindqvist@kristianstad.se",
+                Role = "Enhetschef",
+                Telephone = "044 - 13 20 41"
+            };
             OrganisationalUnitInfo ou11 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V23E1285",
@@ -420,7 +526,16 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 13.988118,
                 Other = "Hemtjänst",
             };
+            ou11.Contacts.Add(con11);
 
+            Contact con12 = new Contact()
+            {
+                FirstName = "Niklas",
+                LastName = "Lindqvist",
+                Email = "niklas.lindqvist@kristianstad.se",
+                Role = "Enhetschef",
+                Telephone = "044 - 13 20 41"
+            };
             OrganisationalUnitInfo ou12 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V23E1292",
@@ -438,7 +553,16 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.21112,
                 Other = "Hemtjänst",
             };
+            ou12.Contacts.Add(con12);
 
+            Contact con13 = new Contact()
+            {
+                FirstName = "Niklas",
+                LastName = "Lindqvist",
+                Email = "niklas.lindqvist@kristianstad.se",
+                Role = "Enhetschef",
+                Telephone = "044 - 13 20 41"
+            };
             OrganisationalUnitInfo ou13 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V23E1302",
@@ -456,7 +580,16 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.159851,
                 Other = "Hemtjänst",
             };
+            ou13.Contacts.Add(con13);
 
+            Contact con14 = new Contact()
+            {
+                FirstName = "Niklas",
+                LastName = "Lindqvist",
+                Email = "niklas.lindqvist@kristianstad.se",
+                Role = "Enhetschef",
+                Telephone = "044 - 13 20 41"
+            };
             OrganisationalUnitInfo ou14 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V23E1310",
@@ -474,7 +607,16 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.177657,
                 Other = "Hemtjänst",
             };
+            ou14.Contacts.Add(con14);
 
+            Contact con15 = new Contact()
+            {
+                FirstName = "Niklas",
+                LastName = "Lindqvist",
+                Email = "niklas.lindqvist@kristianstad.se",
+                Role = "Enhetschef",
+                Telephone = "044 - 13 20 41"
+            };
             OrganisationalUnitInfo ou15 = new OrganisationalUnitInfo()
             {
                 OrganisationalUnitId = "V23E1307",
@@ -492,6 +634,7 @@ namespace TownComparisons.Domain.Migrations
                 Longitude = 14.085189,
                 Other = "Hemtjänst",
             };
+            ou15.Contacts.Add(con15);
 
             c6.Queries.Add(query12);
             c6.Queries.Add(query13);

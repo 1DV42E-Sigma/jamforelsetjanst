@@ -213,6 +213,11 @@ namespace TownComparisons.Domain
             return oui;
         }
 
+        public List<Contact> GetContactsByOU(string organisationalUnitId)
+        {
+            return _unitOfWork.ContactsRepository.Get(c => c.OrganisationalUnitInfo.OrganisationalUnitId == organisationalUnitId).ToList() ?? new List<Contact>();
+        }
+
         public bool UpdateOrganisationalUnitInfo(OrganisationalUnitInfo ou)
         {
             try

@@ -66,10 +66,24 @@
                     <dt>Telefon</dt>
                     <dd>{{ organisationalUnit.Telephone }}</dd>
                     <dt>E-post</dt>
-                    <dd><a href="{{ organisationalUnit.Email }}"> {{ organisationalUnit.Email }}</a></dd>
+                    <dd><a href="mailto:{{ organisationalUnit.Email }}"> {{ organisationalUnit.Email }}</a></dd>
                     <dt>Webbplats</dt>
                     <dd><a href="{{ organisationalUnit.Website }}">{{ organisationalUnit.Website }}</a></dd>    
                 </dl>
+                <hr />
+                <h4>Kontaktpersoner</h4>
+                <div class="row">
+                    <div class="small-4 columns bold">Namn</div>
+                    <div class="small-3 columns bold">Telefon</div>
+                    <div class="small-3 columns bold">Roll</div>
+                    <div class="small-2 columns"></div>
+                </div>
+                <div class="row" ng-repeat="c in ouContacts.Contacts">
+                    <div class="small-4 columns">{{ c.FirstName }} {{ c.LastName }}<br /><a class="text80" href="mailto:{{ c.Email }}"> {{ c.Email }}</a></div>
+                    <div class="small-3 columns">{{ c.Telephone }}</div>
+                    <div class="small-3 columns">{{ c.Role.toLowerCase() }}</div>
+                    <div class="small-2 columns"></div>
+                </div>
                 <hr />
                 <h4>Övrig information</h4>
                 <p class="input-group">

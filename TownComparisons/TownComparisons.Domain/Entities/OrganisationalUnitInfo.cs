@@ -39,8 +39,13 @@ namespace TownComparisons.Domain.Entities
 
         public string Other { get; set; }
 
+        public virtual ICollection<Contact> Contacts { get; set; }
 
         public virtual Category Category { get; set; }  // which category this is in
-        
+
+        public OrganisationalUnitInfo()
+        {
+            Contacts = new HashSet<Contact>();
+        }
     }
 }

@@ -7,6 +7,7 @@
 
     var initialize = function () {
         categoryService.getCategory($routeParams.categoryId, setOperator);
+        $scope.getContactsByOuId($routeParams.operatorId);
         $scope.mapOperators();
     }
     
@@ -25,6 +26,14 @@
         viewModelHelper.apiGet('api/operators/' + ouId, null,
             function (result) {
                 $scope.organisationalUnit = result.data;
+            });
+    }
+
+    //Get Organisational Unit Info via OperatorController
+    $scope.getContactsByOuId = function (ouId) {
+        viewModelHelper.apiGet('api/operators/' + ouId + '/contacts', null,
+            function (result) {
+                $scope.ouContacts = result.data;
             });
     }
 
