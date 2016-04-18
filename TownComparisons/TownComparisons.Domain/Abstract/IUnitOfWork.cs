@@ -13,6 +13,7 @@ namespace TownComparisons.Domain.Abstract
         IRepository<PropertyQueryInfo> PropertyQueryInfoRepository { get; }
         IRepository<GroupCategory> GroupCategoriesRepository { get; }
         IRepository<Category> CategoriesRepository { get; }
+        IRepository<Contact> ContactsRepository { get; }
 
         void Save();
     }

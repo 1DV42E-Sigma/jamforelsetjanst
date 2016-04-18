@@ -34,6 +34,8 @@ namespace TownComparisons.Domain.Abstract
         
         PropertyQueryInfo GetPropertyQueryInfo(int categoryId, string queryId);
 
+        List<Contact> GetContactsByOU(string organisationalUnitId);
+
         bool UpdateOrganisationalUnitInfo(OrganisationalUnitInfo ou);
         bool UpdatePropertyQueryInfo(PropertyQueryInfo propertyQuery);
 

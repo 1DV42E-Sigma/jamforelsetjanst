@@ -10,6 +10,7 @@ using TownComparisons.Domain.Abstract;
 using TownComparisons.Domain.Entities;
 using TownComparisons.Domain.Models;
 using TownComparisons.MVC.ModelBinders;
+using TownComparisons.MVC.ViewModels;
 using TownComparisons.MVC.ViewModels.Shared;
 
 namespace TownComparisons.MVC.Controllers.API
@@ -113,6 +114,18 @@ namespace TownComparisons.MVC.Controllers.API
             return new HttpResponseMessage(HttpStatusCode.NotFound);
         }
 
+        [HttpGet]
+        [Route("operators/{ouId}/contacts")]
+        public HttpResponseMessage GetContactsByOu(HttpRequestMessage request, string ouId)
+        {
+            List<Contact> contacts = _service.GetContactsByOU(ouId);
+            if (contacts != null)
+            {
+                ContactsViewModel model = new ContactsViewModel(contacts);
+                return request.CreateResponse<ContactsViewModel>(HttpStatusCode.OK, model);
+            }
 
+            return new HttpResponseMessage(HttpStatusCode.NotFound);
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace TownComparisons.Domain.DAL
         public IDbSet<PropertyQueryInfo> PropertyQueryInfos { get; set; }
         public IDbSet<GroupCategory> GroupCategories { get; set; }
         public IDbSet<Category> Categories { get; set; }
+        public IDbSet<Contact> Contacts { get; set; }
 
 
         public TownComparisonsContext()
